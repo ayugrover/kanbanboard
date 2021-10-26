@@ -10,9 +10,23 @@ export default class KanbanBoard extends Component {
       tasks: [
             { name: '1', stage: 0 },
             { name: '2', stage: 0 },
-        ]
+        ],
+      
     };
     this.stagesNames = ['Backlog', 'To Do', 'Ongoing', 'Done'];
+  }
+
+  handleChange = (e) =>{
+   // const { tasks } = this.state;
+    const task = {name: e.target.value, stage: 0}
+    this.setState({
+        tasks: [...this.state.tasks, task]
+    });
+    
+  }
+
+  createTask = () =>{
+      console.log(this.state.tasks);
   }
 
   render() {
@@ -30,8 +44,8 @@ export default class KanbanBoard extends Component {
     return (
       <div className="mt-20 layout-column justify-content-center align-items-center">
         <section className="mt-50 layout-row align-items-center justify-content-center">
-          <input id="create-task-input" type="text" className="large" placeholder="New task name" data-testid="create-task-input"/>
-          <button type="submit" className="ml-30" data-testid="create-task-button">Create task</button>
+          <input id="create-task-input" type="text" className="large" placeholder="New task name" data-testid="create-task-input" onChange={this.handleChange}/>
+          <button type="submit" className="ml-30" data-testid="create-task-button" onClick={this.createTask}>Create task</button>
         </section>
 
         <div className="mt-50 layout-row">
