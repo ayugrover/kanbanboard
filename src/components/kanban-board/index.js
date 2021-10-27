@@ -49,6 +49,7 @@ export default class KanbanBoard extends Component {
 
   
   onClickForward = (e) =>{
+  console.log(e);
   var tasks = [...this.state.tasks];
   var ele = tasks.findIndex(element => element.name === e.currentTarget.id);
     if(tasks[ele].stage < 3){
@@ -97,10 +98,10 @@ export default class KanbanBoard extends Component {
                                       <div className="li-content layout-row justify-content-between align-items-center">
                                         <span data-testid={`${task.name.split(' ').join('-')}-name`}>{task.name}</span>
                                         <div className="icons">
-                                          <button id={task.name} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-back`} onClick={this.onClickBack}>
+                                          <button id={task.name} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-back`} onClick={this.onClickBack} disabled={task.stage === 0? true : false}>
                                             <i className="material-icons">arrow_back</i>
                                           </button>
-                                          <button id={task.name} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-forward`} onClick={this.onClickForward}>
+                                          <button id={task.name} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-forward`} onClick={this.onClickForward} disabled={task.stage === 3? true : false}>
                                             <i className="material-icons">arrow_forward</i>
                                           </button>
                                           <button id={task.name} className="icon-only danger x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-delete`} onClick={this.onClickDelete}>
